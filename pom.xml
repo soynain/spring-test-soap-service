@@ -19,15 +19,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
 
 		<dependency>
@@ -67,27 +59,6 @@
 				<version>2.5.0</version>
 				<executions>
 					<execution>
-						<id>xjc</id>
-						<goals>
-							<goal>xjc</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<sources>
-						<source>/src/main/resources/countries.xsd</source>
-					</sources>
-				</configuration>
-			</plugin>-->
-
-
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jaxb2-maven-plugin</artifactId>
-				<version>2.5.0</version>
-				<executions>
-					<execution>
 						<id>schemagen</id>
 						<goals>
 							<goal>schemagen</goal>
@@ -98,17 +69,35 @@
 				<configuration>
 					<transformSchemas>
 						<transformSchema>
-							<uri>https://www.example.org/usuario</uri>
+							<uri>http://web-service.com/gs-producing-web-service/usuario</uri>
 							<toPrefix>usuario</toPrefix>
 							<toFile>usuario.xsd</toFile>
 						</transformSchema>
 					</transformSchemas>
 					
 					<includes>
-						<include>com/springsoappractice/springsoappractice/Usuario/*</include>
+						<include>com/springsoappractice/springsoappractice/gs_producing_web_service/*</include>
 					</includes>
 					<verbose>true</verbose>
 
+				</configuration>
+			</plugin>-->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>2.5.0</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sources>
+						<source>${project.basedir}/src/main/resources/countries.xsd</source>
+					</sources>
 				</configuration>
 			</plugin>
 		</plugins>
