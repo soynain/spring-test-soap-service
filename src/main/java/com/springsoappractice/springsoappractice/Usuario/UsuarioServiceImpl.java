@@ -2,6 +2,8 @@ package com.springsoappractice.springsoappractice.Usuario;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
+    @Transactional
     public Usuario actualizarUsuario(Usuario nuevosDatos) {
         Usuario usuarioAModificar=usuarioRepository.findById(nuevosDatos.getId()).get();
         usuarioAModificar.setNombreCompleto(nuevosDatos.getNombreCompleto());
@@ -27,11 +30,13 @@ public class UsuarioServiceImpl implements UsuarioService{
     }
 
     @Override
+    @Transactional
     public Usuario guardarNuevoUsuario(Usuario usuarioAGuardar) {
         return usuarioRepository.save(usuarioAGuardar);
     }
 
     @Override
+    @Transactional
     public void borrarUsuario(Long id) {
         usuarioRepository.deleteById(id);
     }

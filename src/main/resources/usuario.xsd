@@ -17,6 +17,22 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="getByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:element name="getUsuariosResponse">
         <xs:complexType>
             <xs:sequence>
@@ -24,6 +40,23 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <xs:element name="deleteByIdResponse">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="Response" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+    <xs:element name="updateByIdRequest">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="nuevosDatosUsuario" type="tns:Usuario"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
 
     <xs:complexType name="Usuario">
         <xs:sequence>
