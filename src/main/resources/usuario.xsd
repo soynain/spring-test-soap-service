@@ -1,10 +1,20 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webspring.io/gs-prod"
-           targetNamespace="http://webspring.io/gs-prod" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webspring.io/gs-prod" targetNamespace="http://webspring.io/gs-prod" elementFormDefault="qualified">
+
+<xs:element name="iniciarSesionRequest">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="usuario" type="xs:string" />
+            <xs:element name="contrasena" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+    
+
 
     <xs:element name="getUsuariosRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="name" type="xs:string"/>
+                <xs:element name="name" type="xs:string" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -12,7 +22,7 @@
     <xs:element name="saveUsuariosRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="name" type="tns:Usuario"/>
+                <xs:element name="name" type="tns:Usuario" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -20,7 +30,7 @@
     <xs:element name="getByIdRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="id" type="xs:long"/>
+                <xs:element name="id" type="xs:long" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -28,7 +38,7 @@
     <xs:element name="deleteByIdRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="id" type="xs:long"/>
+                <xs:element name="id" type="xs:long" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -36,33 +46,33 @@
     <xs:element name="getUsuariosResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="usuariosLista" type="tns:Usuario"/>
+                <xs:element name="usuariosLista" type="tns:Usuario" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="deleteByIdResponse">
-    <xs:complexType>
-        <xs:sequence>
-            <xs:element name="Response" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
-</xs:element>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Response" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:element name="updateByIdRequest">
-    <xs:complexType>
-        <xs:sequence>
-            <xs:element name="nuevosDatosUsuario" type="tns:Usuario"/>
-        </xs:sequence>
-    </xs:complexType>
-</xs:element>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="nuevosDatosUsuario" type="tns:Usuario" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
 
     <xs:complexType name="Usuario">
         <xs:sequence>
-            <xs:element name="id" type="xs:long"/>
-            <xs:element name="nombreCompleto" type="xs:string"/>
-            <xs:element name="edad" type="xs:int"/>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="nombreCompleto" type="xs:string" />
+            <xs:element name="edad" type="xs:int" />
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

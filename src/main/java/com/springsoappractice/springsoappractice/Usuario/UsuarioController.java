@@ -3,16 +3,19 @@ package com.springsoappractice.springsoappractice.Usuario;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+import org.springframework.ws.soap.server.endpoint.annotation.SoapAction;
 
 import com.springsoappractice.springsoappractice.gs_prod.DeleteByIdRequest;
 import com.springsoappractice.springsoappractice.gs_prod.DeleteByIdResponse;
 import com.springsoappractice.springsoappractice.gs_prod.GetByIdRequest;
 import com.springsoappractice.springsoappractice.gs_prod.GetUsuariosRequest;
 import com.springsoappractice.springsoappractice.gs_prod.GetUsuariosResponse;
+import com.springsoappractice.springsoappractice.gs_prod.IniciarSesionRequest;
 //import com.springsoappractice.springsoappractice.gs_prod.ObjectFactory;
 import com.springsoappractice.springsoappractice.gs_prod.SaveUsuariosRequest;
 import com.springsoappractice.springsoappractice.gs_prod.UpdateByIdRequest;
@@ -25,6 +28,7 @@ import com.springsoappractice.springsoappractice.gs_prod.Usuario;
  * or requestmapping annotations, you use enpoint annotation
  */
 @Endpoint
+@CrossOrigin(origins = "*")
 public class UsuarioController {
 	@Autowired
 	UsuarioServiceImpl usuarioServiceImpl;
@@ -41,6 +45,19 @@ public class UsuarioController {
 	 * set that payload as a parameter with the pojo 
 	 * class in the endpoint
 	 */
+	@SoapAction("http://localhost:8080/soap/iniciar-sesion")
+	@PayloadRoot(namespace=NAMESPACE,localPart = "iniciarSesionRequest")
+	@ResponsePayload
+	public GetUsuariosResponse verificarCredencialesEjemplo(@RequestPayload IniciarSesionRequest req){
+		GetUsuariosResponse response = new GetUsuariosResponse();
+		Usuario usuario=new Usuario();
+		usuario.setEdad(12);
+		usuario.setNombreCompleto("Moisexo Sabroso");
+		log.info(req.getUsuario()+" -> "+req.getContrasena());
+		response.getUsuariosLista().add(usuario);
+		return response;
+	}
+
    	@PayloadRoot(namespace = NAMESPACE,localPart = "getUsuariosRequest")
     @ResponsePayload
 	public GetUsuariosResponse getUsuarios(@RequestPayload GetUsuariosRequest req){
