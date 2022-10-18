@@ -58,14 +58,17 @@ public class UsuarioController {
 		return response;
 	}
 
+	@SoapAction("http://localhost:8080/soap/get-all-usuarios")
    	@PayloadRoot(namespace = NAMESPACE,localPart = "getUsuariosRequest")
     @ResponsePayload
 	public GetUsuariosResponse getUsuarios(@RequestPayload GetUsuariosRequest req){
 		GetUsuariosResponse response=new GetUsuariosResponse();
+		log.info(req.getName());
 		response.setUsuariosLista(usuarioServiceImpl.obtenerTodosLosUsuarios());
 		return response;
 	}
 
+	@SoapAction("http://localhost:8080/soap/save-user")
 	@PayloadRoot(namespace = NAMESPACE,localPart = "saveUsuariosRequest")
 	@ResponsePayload
 	public GetUsuariosResponse saveUsuario(@RequestPayload SaveUsuariosRequest req){
@@ -80,6 +83,7 @@ public class UsuarioController {
 		return response;
 	}
 
+	@SoapAction("http://localhost:8080/soap/get-certain-user")
 	@PayloadRoot(namespace=NAMESPACE,localPart = "getByIdRequest")
 	@ResponsePayload
 	public GetUsuariosResponse getUsuarioEspecifico(@RequestPayload GetByIdRequest req){
@@ -89,6 +93,7 @@ public class UsuarioController {
 		return response;
 	}
 
+	@SoapAction("http://localhost:8080/soap/delete-user")
 	@PayloadRoot(namespace = NAMESPACE,localPart ="deleteByIdRequest")
 	@ResponsePayload
 	public DeleteByIdResponse eliminarUsuarioEspecifico(@RequestPayload DeleteByIdRequest req){
@@ -100,6 +105,7 @@ public class UsuarioController {
 		return response;
 	}
 
+	@SoapAction("http://localhost:8080/soap/update-user")
 	@PayloadRoot(namespace = NAMESPACE,localPart = "updateByIdRequest")
 	@ResponsePayload
 	public GetUsuariosResponse actualizarDatosUsuarioEspecifico(@RequestPayload UpdateByIdRequest req){
